@@ -1,0 +1,52 @@
+{
+  "version": "2.0",
+  "logging": {
+    "logLevel": {
+      "default": "Error"
+    },
+    "fileLoggingMode": "debugOnly",
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "maxTelemetryItemsPerSecond" : 20,
+        "evaluationInterval": "01:00:00",
+        "initialSamplingPercentage": 100.0, 
+        "samplingPercentageIncreaseTimeout" : "00:00:01",
+        "samplingPercentageDecreaseTimeout" : "00:00:01",
+        "minSamplingPercentage": 0.1,
+        "maxSamplingPercentage": 100.0,
+        "movingAverageRatio": 1.0,
+        "excludedTypes" : "PageView",
+        "includedTypes" : "Trace;Dependency;Event;Request"
+      },
+      "enableLiveMetrics": true,
+      "enableDependencyTracking": true,
+      "enablePerformanceCountersCollection": true,            
+      "httpAutoCollectionOptions": {
+          "enableHttpTriggerExtendedInfoCollection": true,
+          "enableW3CDistributedTracing": true,
+          "enableResponseHeaderInjection": true
+      }
+    }
+  },
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[4.0.0, 5.0.0)"
+  },
+  "customHandler": {
+    "description": {
+      "defaultExecutablePath": "singleroute",
+      "workingDirectory": "",
+      "arguments": [
+        "%AUTH_OPTION%",
+        "%LOCAL%"
+      ]
+    },
+    "enableForwardingHttpRequest": true
+  },
+  "extensions": {
+    "http": {
+      "routePrefix": ""
+    }
+  }
+}
